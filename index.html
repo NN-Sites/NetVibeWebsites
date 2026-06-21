@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetVibe | בניית אתרים מנצחים לעסקים</title>
+    <!-- טעינת פונט מקצועי מגוגל -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0a0f1d;
+            --bg-light: #f8fafc;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #38bdf8;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Heebo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & HERO (Dark Section) --- */
+        .dark-wrapper {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #111827 100%);
+            color: white;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        /* אפקט הילה ברקע */
+        .dark-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* --- TRUST BAR --- */
+        .trust-bar {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--card-border);
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .trust-item h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .trust-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* --- PRICING SECTION --- */
+        .pricing-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .price-card {
+            background: white;
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        /* כרטיס פופולרי */
+        .price-card.popular {
+            border: 2px solid var(--primary);
+            box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.15);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .card-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 25px;
+        }
+
+        .package-name {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .currency {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .amount {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .period {
+            font-size: 15px;
+            color: var(--primary);
+            font-weight: 700;
+            background: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .features li {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #334155;
+            margin-bottom: 16px;
+        }
+
+        .features li::before {
+            content: '✓';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: #eff6ff;
+            color: var(--primary);
+            border-radius: 50%;
+            font-size: 13px;
+            font-weight: 900;
+            margin-left: 12px;
+            flex-shrink: 0;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            background-color: var(--bg-dark);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: #1e293b;
+            transform: translateY(-2px);
+        }
+
+        .price-card.popular .cta-btn {
+            background-color: var(--primary);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+        }
+
+        .price-card.popular .cta-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid var(--card-border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* =======================================
+           MOBILE & TABLET RESPONSIVE BREAKPOINTS
+           ======================================= */
+           
+        @media (max-width: 992px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            /* בחצי מסך - נוריד את הכרטיס השלישי לשורה נפרדת באמצע */
+            .price-card:last-child {
+                grid-column: span 2;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* התאמת פונטים למובייל */
+            .hero h1 { font-size: 38px; }
+            .hero p { font-size: 17px; }
+            .section-title h2 { font-size: 28px; }
+            
+            /* הפיכת שורת האמון לאנכית */
+            .trust-bar {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin: -20px 20px 50px;
+                padding: 25px;
+            }
+
+            .trust-item:not(:last-child) {
+                border-bottom: 1px solid var(--card-border);
+                padding-bottom: 20px;
+            }
+
+            /* הפיכת גריד המחירים לטור אחד */
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .price-card:last-child {
+                grid-column: span 1;
+                max-width: 1000px;
+            }
+
+            .price-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            /* הגדלת אזור הלחיצה של הכפתורים לאגודל */
+            .cta-btn {
+                padding: 18px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- אזור פתיחה כהה -->
+    <div class="dark-wrapper">
+        <header>
+            <div class="logo">Net<span>Vibe</span></div>
+            <!-- אפשר בעתיד להוסיף פה כפתור "חייג עכשיו" -->
+        </header>
+
+        <section class="hero">
+            <div class="tagline">בניית אתרים בדור החדש</div>
+            <h1>בונים אתרים שמביאים <span>תוצאות.</span></h1>
+            <p>בלי מנוי חודשי, בלי אותיות קטנות. אתר מהיר, מעוצב ורספונסיבי שעובר לבעלותך המלאה בתשלום אחד בלבד.</p>
+        </section>
+    </div>
+
+    <!-- סרגל היתרונות (צף בין הכהה לבהיר) -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <h4>100% בעלות שלך</h4>
+            <p>משלמים פעם אחת, האתר שלך לנצח. ללא קנסות מעבר.</p>
+        </div>
+        <div class="trust-item">
+            <h4>מותאם מובייל וגוגל</h4>
+            <p>קוד נקי ורזה שטוען את האתר בשניות ומדורג גבוה.</p>
+        </div>
+        <div class="trust-item">
+            <h4>עיצוב ממוקד מכירות</h4>
+            <p>חווית משתמש שנועדה להפוך גולשים ללקוחות משלמים.</p>
+        </div>
+    </div>
+
+    <!-- אזור החבילות -->
+    <section class="pricing-section">
+        <div class="section-title">
+            <h2>בחר את המסלול של העסק שלך</h2>
+            <p>מחירים שקופים. ללא הפתעות בחשבונית.</p>
+        </div>
+
+        <div class="pricing-grid">
+
+            <!-- חבילה 1 -->
+            <div class="price-card">
+                <div>
+                    <div class="card-header">
+                        <div class="package-name">עסק מתחיל</div>
+                        <div class="price-box">
+                            <span class="currency">₪</span>
+                            <span class="amount">800</span>
+                        </div>
+                        <span class="period">תשלום חד-פעמי</span>
+                    </div>
+                    <ul class="features">
+                        <li>אתר תדמית עמוד אחד (One-Pager)</li>
+                        <li>עיצוב מודרני מותאם לניידים</li>
+                        <li>טופס השארת פרטים ישירות למייל</li>
+                        <li>כפתור חיוג מהיר וקישור ל-WhatsApp</li>
+                        <li>חיבור לדומיין הפרטי שלך</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn">בחר בחבילה</a>
+            </div>
+
+            <!-- חבילה 2 (הפופולרית) -->
+            <div class="price-card popular">
+                <div class="popular-badge">המסלול המשתלם ביותר</div>
+                <div>
+                    <div class="card-header">
+                        <div class="package-name">עסק מתקדם</div>
+                        <div class="price-box">
+                            <span class="currency">₪</span>
+                            <span class="amount">1,600</span>
+                        </div>
+                        <span class="period">תשלום חד-פעמי</span>
+                    </div>
+                    <ul class="features">
+                        <li>אתר מורחב (עד 5 עמודים)</li>
+                        <li>עיצוב פרימיום ייחודי לעסק שלך</li>
+                        <li>הכנת תשתית לקידום אורגני בגוגל (SEO)</li>
+                        <li>גלריית פרויקטים / המלצות לקוחות</li>
+                        <li>התממשקות למערכות דיוור ו-CRM</li>
+                        <li>תמיכה טכנית ואחריות ל-3 חודשים</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn">בחר בחבילה</a>
+            </div>
+
+            <!-- חבילה 3 -->
+            <div class="price-card">
+                <div>
+                    <div class="card-header">
+                        <div class="package-name">פרימיום</div>
+                        <div class="price-box">
+                            <span class="currency">₪</span>
+                            <span class="amount">2,400</span>
+                        </div>
+                        <span class="period">תשלום חד-פעמי</span>
+                    </div>
+                    <ul class="features">
+                        <li>אתר קטלוגי או חנות אונליין (E-Commerce)</li>
+                        <li>מערכת ניהול פשוטה להעלאת מוצרים לבד</li>
+                        <li>חיבור לחברות סליקה וכרטיסי אשראי</li>
+                        <li>אופטימיזציה מוגברת למהירות טעינה</li>
+                        <li>הדרכה אישית על ניהול האתר (זום/פרונטלי)</li>
+                        <li>ליווי ותמיכה טכנית VIP לחצי שנה</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="cta-btn">בחר בחבילה</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>NetVibe &copy; 2026. בונים את האינטרנט הישראלי.</p>
+    </footer>
+
+</body>
+</html>
